@@ -53,7 +53,12 @@ const Tabledata = () => {
 			.delete(`/rooms/${row._id}`)
 			.then((response) => {
 				console.log(response, " deleted");
-				getRows();
+				// getRows();
+				setRows(
+					rows.filter((r) => {
+						return r._id !== row._id;
+					})
+				);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -84,14 +89,31 @@ const Tabledata = () => {
 								<TableRow key={row._id}>
 									<TableCell align="left">{row.move_out_date}</TableCell>
 									<TableCell align="left">{row.id}</TableCell>
-									<TableCell align="left">{row.address}</TableCell>
+									<TableCell align="left">
+										<img
+											src={row.picture}
+											style={{
+												width: "40px",
+												height: "40px",
+												marginRight: "1rem",
+												borderRadius: "50%",
+											}}
+										/>
+										<span>{row.address}</span>
+									</TableCell>
 									<TableCell align="center">{row.room}</TableCell>
 									<TableCell align="left">{row.location}</TableCell>
 									<TableCell align="left">{row.last_occupant}</TableCell>
 									<TableCell align="left">{row.uid}</TableCell>
 									<TableCell align="left">{row.balance}</TableCell>
 									<TableCell>
-										<Button onClick={() => deleteRow(row)}>Flip Room</Button>
+										<Button
+											variant="outlined"
+											style={{ textTransform: "unset" }}
+											onClick={() => deleteRow(row)}
+										>
+											Flip Room
+										</Button>
 									</TableCell>
 								</TableRow>
 							))}
