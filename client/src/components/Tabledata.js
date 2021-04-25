@@ -15,19 +15,13 @@ const useStyles = makeStyles({
 	table: {
 		minWidth: 650,
 	},
+	tableCell: {
+		padding: "8px 16px 8px 16px",
+	},
+	tableTitle: {
+		fontWeight: "700",
+	},
 });
-
-function createData(name, calories, fat, carbs, protein) {
-	return { name, calories, fat, carbs, protein };
-}
-
-// const rows = [
-// 	createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-// 	createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-// 	createData("Eclair", 262, 16.0, 24, 6.0),
-// 	createData("Cupcake", 305, 3.7, 67, 4.3),
-// 	createData("Gingerbread", 356, 16.0, 49, 3.9),
-// ];
 
 const Tabledata = () => {
 	const classes = useStyles();
@@ -69,50 +63,93 @@ const Tabledata = () => {
 		<Grid container justify="center">
 			<Grid item>
 				<h1>Move-out List</h1>
-				<TableContainer component={Paper}>
+				<TableContainer>
 					<Table className={classes.table} aria-label="simple table">
 						<TableHead>
 							<TableRow>
-								<TableCell align="left">Move-out Date</TableCell>
-								<TableCell align="left">ID</TableCell>
-								<TableCell align="left">Address</TableCell>
-								<TableCell align="left">Room</TableCell>
-								<TableCell align="left">Location</TableCell>
-								<TableCell align="left">Last Occupant</TableCell>
-								<TableCell align="left">UID</TableCell>
-								<TableCell align="left">Balance</TableCell>
-								<TableCell align="left"></TableCell>
+								<TableCell align="left" className={classes.tableTitle}>
+									Move-out Date
+								</TableCell>
+								<TableCell align="left" className={classes.tableTitle}>
+									ID
+								</TableCell>
+								<TableCell align="left" className={classes.tableTitle}>
+									Address
+								</TableCell>
+								<TableCell align="left" className={classes.tableTitle}>
+									Room
+								</TableCell>
+								<TableCell align="left" className={classes.tableTitle}>
+									Location
+								</TableCell>
+								<TableCell align="left" className={classes.tableTitle}>
+									Last Occupant
+								</TableCell>
+								<TableCell align="left" className={classes.tableTitle}>
+									UID
+								</TableCell>
+								<TableCell align="left" className={classes.tableTitle}>
+									Balance
+								</TableCell>
+								<TableCell align="left" className={classes.tableTitle}></TableCell>
 							</TableRow>
 						</TableHead>
 						<TableBody>
 							{rows?.map((row) => (
 								<TableRow key={row._id}>
-									<TableCell align="left">{row.move_out_date}</TableCell>
-									<TableCell align="left">{row.id}</TableCell>
-									<TableCell align="left">
-										<img
-											src={row.picture}
-											style={{
-												width: "40px",
-												height: "40px",
-												marginRight: "1rem",
-												borderRadius: "50%",
-											}}
-										/>
-										<span>{row.address}</span>
+									<TableCell align="left" className={classes.tableCell}>
+										{row.move_out_date}
 									</TableCell>
-									<TableCell align="center">{row.room}</TableCell>
-									<TableCell align="left">{row.location}</TableCell>
-									<TableCell align="left">{row.last_occupant}</TableCell>
-									<TableCell align="left">{row.uid}</TableCell>
-									<TableCell align="left">{row.balance}</TableCell>
+									<TableCell align="left" className={classes.tableCell}>
+										{row.id}
+									</TableCell>
+									<TableCell align="left" className={classes.tableCell}>
+										<Grid container alignItems="center">
+											<Grid item>
+												<img
+													src={row.picture}
+													style={{
+														width: "40px",
+														height: "40px",
+														marginRight: "1rem",
+														borderRadius: "50%",
+													}}
+												/>
+											</Grid>
+											<Grid
+												item
+												style={{ color: "#029486", fontWeight: "700" }}
+											>
+												{row.address}
+											</Grid>
+										</Grid>
+									</TableCell>
+									<TableCell align="center" className={classes.tableCell}>
+										{row.room}
+									</TableCell>
+									<TableCell align="left" className={classes.tableCell}>
+										{row.location}
+									</TableCell>
+									<TableCell
+										align="left"
+										style={{ color: "#029486", fontWeight: "700" }}
+										className={classes.tableCell}
+									>
+										{row.last_occupant}
+									</TableCell>
+									<TableCell align="left" className={classes.tableCell}>
+										{row.uid}
+									</TableCell>
+									<TableCell align="left" className={classes.tableCell}>
+										{row.balance}
+									</TableCell>
 									<TableCell>
 										<Button
 											variant="outlined"
-											style={{ textTransform: "unset" }}
+											style={{ textTransform: "unset", whiteSpace: "nowrap" }}
 											onClick={() => deleteRow(row)}
 										>
-											Flip Room
+											Flip room
 										</Button>
 									</TableCell>
 								</TableRow>
