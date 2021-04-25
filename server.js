@@ -1,14 +1,37 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const path = require("path");
 const dataRouter = require("./routes/dataRoutes");
 
-require("dotenv").config();
-const app = express();
-const PORT = process.env.PORT || 5000;
+if (process.env.NODE_ENV !== "production") {
+	require("dotenv").config();
+}
 
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Create a new express application named 'app'
+const app = express();
+
+// Set our backend port to be either an environment variable or port 5000
+const port = process.env.PORT || 5000;
+
+// This application level middleware prints incoming requests to the servers console, useful to see incoming requests
+app.use((req, res, next) => {
+	console.log(`Request_Endpoint: ${req.method} ${req.url}`);
+	next();
+});
+
+// Configure the bodyParser middleware
+app.use(bodyParser.json());
+app.use(
+	bodyParser.urlencoded({
+		extended: true,
+	})
+);
+
+//Configure the cors middleware
+app.use(cors());
+
 
 // Add route
 app.use("/rooms", dataRouter);
@@ -22,10 +45,17 @@ if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "staging")
 	});
 }
 
+// Catch any bad requests
+app.get("*", (req, res) => {
+	res.status(200).json({
+		msg: "Catch All",
+	});
+});
+
 //connect to the mongo db
 mongoose
 	.connect("mongodb://localhost:27017/PadsplitAssignment" || process.env.REACT_APP_MONGODB_URI, {
-	// .connect(process.env.REACT_APP_MONGODB_URI, {
+		// .connect(process.env.REACT_APP_MONGODB_URI, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		useFindAndModify: false,
@@ -46,4 +76,4 @@ connection.once("open", () => {
 });
 
 // Start the API server
-app.listen(PORT, () => console.log(`BACK_END_SERVICE_PORT: ${PORT}`));
+app.listen(port, () => console.log(`BACK_END_SERVICE_PORT: ${port}`));
