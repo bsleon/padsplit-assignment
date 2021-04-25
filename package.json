@@ -2,6 +2,10 @@
   "name": "padsplit-assignment",
   "version": "0.1.0",
   "main": "server.js",
+    "engines": {
+    "node": "12.9.0",
+    "npm": "6.10.2"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "concurrently": "^6.0.2",
