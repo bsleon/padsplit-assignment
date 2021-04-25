@@ -1,14 +1,75 @@
 {
     "data":[
         {
-            "one": 1,
-            "two": 2,
-            "three": 3
+            "move_out_date": "Jan 01, 2020",
+            "id": "42312",
+            "address": "2623 Honeysuckle Rd. NW",
+            "room": "3",
+            "location": "Atlanta, GA",
+            "last_occupant": "Melissa Banks",
+            "uid": "89029",
+            "balance": "($405.90)"
         },
         {
-            "four": 4,
-            "five": 5,
-            "six": 6
+            "move_out_date": "Jan 12, 2020",
+            "id": "42312",
+            "address": "9870 Colonial Ave.",
+            "room": "2",
+            "location": "Decatur, GA",
+            "last_occupant": "Frankie Vox",
+            "uid": "89029",
+            "balance": "($405.90)"
+        },
+        {
+            "move_out_date": "Jan 18, 2020",
+            "id": "42312",
+            "address": "1822 Riverside Dr. SW",
+            "room": "6",
+            "location": "Atlanta, GA",
+            "last_occupant": "Harry Rutherford",
+            "uid": "89029",
+            "balance": "($405.90)"
+        },
+        {
+            "move_out_date": "Jan 18, 2020",
+            "id": "42312",
+            "address": "990 Garden St.",
+            "room": "4",
+            "location": "Decatur, GA",
+            "last_occupant": "Clarke Brast",
+            "uid": "89029",
+            "balance": "($405.90)"
+        },
+        {
+            "move_out_date": "Jan 18, 2020",
+            "id": "42312",
+            "address": "3548 Moose Rd. NE Apt 90",
+            "room": "1",
+            "location": "Buckhead, GA",
+            "last_occupant": "Eric Van",
+            "uid": "89029",
+            "balance": "($405.90)"
+        },
+        {
+            "move_out_date": "Jan 20, 2020",
+            "id": "42312",
+            "address": "7659 Brookfield Ave.",
+            "room": "5",
+            "location": "Morrow, GA",
+            "last_occupant": "Jerry Tallah",
+            "uid": "89029",
+            "balance": "($405.90)"
+        },
+        {
+            "move_out_date": "Feb 02, 2020",
+            "id": "42312",
+            "address": "390 Washington Rd.",
+            "room": "3",
+            "location": "Atlanta, GA",
+            "last_occupant": "Olivia Darks",
+            "uid": "89029",
+            "balance": "($405.90)"
         }
+
     ]
 }

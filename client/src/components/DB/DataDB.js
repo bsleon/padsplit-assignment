@@ -6,13 +6,13 @@ const DataDB = () => {
 	const loadDB = () => {
 		console.log(DB);
 		console.log(typeof DB);
-		// axios.post("/userStories", DB.userstories).then((res) => console.log(res.data));
+		axios.post("/rooms", DB.data).then((res) => console.log(res.data));
 	};
 
 	const deleteDB = () => {
-		// axios.delete("/userStories").then((res) => {
-		// 	console.log(res.data);
-		// });
+		axios.delete("/rooms").then((res) => {
+			console.log(res.data);
+		});
 	};
 
 	console.log(DB);
