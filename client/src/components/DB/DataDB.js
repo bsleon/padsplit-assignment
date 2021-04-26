@@ -16,8 +16,12 @@ const DataDB = () => {
 	return (
 		<Grid container>
 			<Grid item style={{ marginRight: "1rem" }}>
-				<Button variant="outlined" onClick={reloadDB}>
-					Reload DB
+				<Button
+					variant="outlined"
+					onClick={reloadDB}
+					style={{ textTransform: "unset", whiteSpace: "nowrap" }}
+				>
+					Reset Database
 				</Button>
 			</Grid>
 		</Grid>
