@@ -54,8 +54,8 @@ app.get("*", (req, res) => {
 
 //connect to the mongo db
 mongoose
-	.connect("mongodb://localhost:27017/PadsplitAssignment" || process.env.REACT_APP_MONGODB_URI, {
-		// .connect(process.env.REACT_APP_MONGODB_URI, {
+	// .connect("mongodb://localhost:27017/PadsplitAssignment" || process.env.REACT_APP_MONGODB_URI, {
+		.connect(process.env.REACT_APP_MONGODB_URI, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		useFindAndModify: false,
