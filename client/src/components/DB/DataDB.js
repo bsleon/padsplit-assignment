@@ -4,30 +4,20 @@ import DB from "./dataDB.json";
 import { Button, Grid } from "@material-ui/core";
 
 const DataDB = () => {
-	const loadDB = () => {
-		axios.post("/rooms", DB.data).then((res) => {
-			// console.log(res.data);
-			window.location.reload();
-		});
-	};
-
-	const deleteDB = () => {
+	const reloadDB = () => {
 		axios.delete("/rooms").then((res) => {
-			// console.log(res.data);
-			window.location.reload();
+			axios.post("/rooms", DB.data).then((res) => {
+				console.log(res.data);
+				window.location.reload();
+			});
 		});
 	};
 
 	return (
 		<Grid container>
 			<Grid item style={{ marginRight: "1rem" }}>
-				<Button variant="outlined" onClick={deleteDB}>
-					Delete DB
-				</Button>
-			</Grid>
-			<Grid item>
-				<Button variant="outlined" onClick={loadDB}>
-					Load DB
+				<Button variant="outlined" onClick={reloadDB}>
+					Reload DB
 				</Button>
 			</Grid>
 		</Grid>
