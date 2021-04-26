@@ -34,11 +34,18 @@ const Tabledata = () => {
 		axios
 			.get("/rooms")
 			.then((response) => {
-				setRows(response.data);
+				setRows(sortByDate(response.data));
 			})
 			.catch((error) => {
 				console.log(error);
 			});
+	};
+
+	const sortByDate = (data) => {
+		let sorted = data.sort((a, b) => {
+			return new Date(a.move_out_date).getTime() - new Date(b.move_out_date).getTime();
+		});
+		return sorted;
 	};
 
 	const flipRoom = (row) => {

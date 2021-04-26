@@ -6,19 +6,18 @@ import { Button, Grid } from "@material-ui/core";
 const DataDB = () => {
 	const loadDB = () => {
 		axios.post("/rooms", DB.data).then((res) => {
-			console.log(res.data);
+			// console.log(res.data);
 			window.location.reload();
 		});
 	};
 
 	const deleteDB = () => {
 		axios.delete("/rooms").then((res) => {
-			console.log(res.data);
+			// console.log(res.data);
 			window.location.reload();
 		});
 	};
 
-	console.log(DB);
 	return (
 		<Grid container>
 			<Grid item style={{ marginRight: "1rem" }}>
