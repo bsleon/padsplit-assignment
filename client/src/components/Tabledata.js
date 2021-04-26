@@ -6,10 +6,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-// import DB from "./DB/dataDB.json";
 import axios from "axios";
 import { Button, Grid } from "@material-ui/core";
+import DataDB from "./DB/DataDB";
 
 const useStyles = makeStyles({
 	table: {
@@ -42,12 +41,11 @@ const Tabledata = () => {
 			});
 	};
 
-	const deleteRow = (row) => {
+	const flipRoom = (row) => {
 		axios
 			.delete(`/rooms/${row._id}`)
 			.then((response) => {
 				console.log(response, " deleted");
-				// getRows();
 				setRows(
 					rows.filter((r) => {
 						return r._id !== row._id;
@@ -147,7 +145,7 @@ const Tabledata = () => {
 										<Button
 											variant="outlined"
 											style={{ textTransform: "unset", whiteSpace: "nowrap" }}
-											onClick={() => deleteRow(row)}
+											onClick={() => flipRoom(row)}
 										>
 											Flip room
 										</Button>
@@ -157,6 +155,9 @@ const Tabledata = () => {
 						</TableBody>
 					</Table>
 				</TableContainer>
+				<div style={{ marginTop: "2rem" }}>
+					<DataDB />
+				</div>
 			</Grid>
 		</Grid>
 	);
