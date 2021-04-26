@@ -20,27 +20,34 @@ const useStyles = makeStyles({
 	tableTitle: {
 		fontWeight: "700",
 	},
+	roomPhoto: {
+		width: "40px",
+		height: "40px",
+		marginRight: "1rem",
+		borderRadius: "50%",
+	},
 });
 
 const Tabledata = () => {
 	const classes = useStyles();
 	const [rows, setRows] = useState(null);
 
+	//get data from mongo db on page load
 	useEffect(() => {
+		const getRows = () => {
+			axios
+				.get("/rooms")
+				.then((response) => {
+					setRows(sortByDate(response.data));
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		};
 		getRows();
 	}, []);
 
-	const getRows = () => {
-		axios
-			.get("/rooms")
-			.then((response) => {
-				setRows(sortByDate(response.data));
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};
-
+	//sort data by date
 	const sortByDate = (data) => {
 		let sorted = data.sort((a, b) => {
 			return new Date(a.move_out_date).getTime() - new Date(b.move_out_date).getTime();
@@ -48,6 +55,7 @@ const Tabledata = () => {
 		return sorted;
 	};
 
+	//delete row from backend and update frontend
 	const flipRoom = (row) => {
 		axios
 			.delete(`/rooms/${row._id}`)
@@ -64,38 +72,37 @@ const Tabledata = () => {
 			});
 	};
 
+	const columnNames = [
+		"Move-out Date",
+		"ID",
+		"Address",
+		"Room",
+		"Location",
+		"Last Occupant",
+		"UID",
+		"Balance",
+	];
+
+	//create column headers
+	const Columns = () => {
+		return columnNames.map((col) => {
+			return (
+				<TableCell align="left" className={classes.tableTitle}>
+					{col}
+				</TableCell>
+			);
+		});
+	};
+
 	return (
 		<Grid container justify="center">
 			<Grid item>
 				<h1>Move-out List</h1>
 				<TableContainer>
-					<Table className={classes.table} aria-label="simple table">
+					<Table className={classes.table} aria-label="simple table" size="small">
 						<TableHead>
 							<TableRow>
-								<TableCell align="left" className={classes.tableTitle}>
-									Move-out Date
-								</TableCell>
-								<TableCell align="left" className={classes.tableTitle}>
-									ID
-								</TableCell>
-								<TableCell align="left" className={classes.tableTitle}>
-									Address
-								</TableCell>
-								<TableCell align="left" className={classes.tableTitle}>
-									Room
-								</TableCell>
-								<TableCell align="left" className={classes.tableTitle}>
-									Location
-								</TableCell>
-								<TableCell align="left" className={classes.tableTitle}>
-									Last Occupant
-								</TableCell>
-								<TableCell align="left" className={classes.tableTitle}>
-									UID
-								</TableCell>
-								<TableCell align="left" className={classes.tableTitle}>
-									Balance
-								</TableCell>
+								<Columns />
 								<TableCell align="left" className={classes.tableTitle}></TableCell>
 							</TableRow>
 						</TableHead>
@@ -113,12 +120,7 @@ const Tabledata = () => {
 											<Grid item>
 												<img
 													src={row.picture}
-													style={{
-														width: "40px",
-														height: "40px",
-														marginRight: "1rem",
-														borderRadius: "50%",
-													}}
+													className={classes.roomPhoto}
 												/>
 											</Grid>
 											<Grid
