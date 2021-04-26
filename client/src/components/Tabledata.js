@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import axios from "axios";
 import { Button, Grid } from "@material-ui/core";
 import DataDB from "./DB/DataDB";
+import ModalImage from "react-modal-image";
 
 const useStyles = makeStyles({
 	table: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles({
 	},
 	tableTitle: {
 		fontWeight: "700",
+		paddingBottom: "1.5rem",
 	},
 	roomPhoto: {
 		width: "40px",
@@ -98,7 +100,7 @@ const Tabledata = () => {
 	return (
 		<Grid container justify="center">
 			<Grid item>
-				<h1>Move-out List</h1>
+				<h1 style={{ paddingLeft: "1rem" }}>Move-out List</h1>
 				<TableContainer>
 					<Table className={classes.table} aria-label="simple table" size="small">
 						<TableHead>
@@ -119,10 +121,16 @@ const Tabledata = () => {
 									<TableCell align="left" className={classes.tableCell}>
 										<Grid container alignItems="center">
 											<Grid item>
-												<img
+												<ModalImage
+													small={row.picture}
+													large={row.picture}
+													className={classes.roomPhoto}
+													hideDownload
+												/>
+												{/* <img
 													src={row.picture}
 													className={classes.roomPhoto}
-												/>
+												/> */}
 											</Grid>
 											<Grid
 												item
