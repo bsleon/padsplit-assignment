@@ -3,12 +3,12 @@ import axios from "axios";
 import DB from "./dataDB.json";
 import { Button, Grid } from "@material-ui/core";
 
-const DataDB = () => {
+const DataDB = ({ getRows }) => {
 	const reloadDB = () => {
 		axios.delete("/rooms").then((res) => {
 			axios.post("/rooms", DB.data).then((res) => {
 				console.log(res.data);
-				window.location.reload();
+				getRows();
 			});
 		});
 	};

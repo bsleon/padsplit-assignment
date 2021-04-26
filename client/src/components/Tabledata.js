@@ -34,18 +34,19 @@ const Tabledata = () => {
 
 	//get data from mongo db on page load
 	useEffect(() => {
-		const getRows = () => {
-			axios
-				.get("/rooms")
-				.then((response) => {
-					setRows(sortByDate(response.data));
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-		};
 		getRows();
 	}, []);
+
+	const getRows = () => {
+		axios
+			.get("/rooms")
+			.then((response) => {
+				setRows(sortByDate(response.data));
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
 	//sort data by date
 	const sortByDate = (data) => {
@@ -165,7 +166,7 @@ const Tabledata = () => {
 					</Table>
 				</TableContainer>
 				<div style={{ marginTop: "2rem" }}>
-					<DataDB />
+					<DataDB getRows={getRows} />
 				</div>
 			</Grid>
 		</Grid>
