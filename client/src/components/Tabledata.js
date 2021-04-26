@@ -101,7 +101,7 @@ const Tabledata = () => {
 						</TableHead>
 						<TableBody>
 							{rows?.map((row) => (
-								<TableRow key={row._id}>
+								<TableRow key={row._id} hover={true}>
 									<TableCell align="left" className={classes.tableCell}>
 										{row.move_out_date}
 									</TableCell>
